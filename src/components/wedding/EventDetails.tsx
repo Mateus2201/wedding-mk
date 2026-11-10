@@ -3,35 +3,37 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, Clock, Sparkles } from "lucide-react";
 import theRoseGardenImage from "@/assets/therosegarden.jpg";
+import { wedding } from "@/lib/wedding";
 
-const events = [
+type WeddingEvent = {
+  title: string;
+  time: string | null;
+  location: string;
+  venue: string;
+  address?: string;
+  description: string;
+  image: string;
+};
+
+const events: WeddingEvent[] = [
   {
     title: "The Ceremony",
-    time: "4:00 PM",
-    location: "The Rose Garden",
-    venue: "The Whitmore Estate",
-    address: "2847 Silverado Trail, Napa Valley, CA 94558",
+    time: wedding.ceremonyTime,
+    location: wedding.venue,
+    venue: `${wedding.city}, ${wedding.state}`,
+    address: wedding.address,
     description:
-      "Join us as we exchange vows in the estate's enchanting rose garden, surrounded by cascading blooms and the golden California light.",
+      "We begin the day together as we exchange our vows, surrounded by the people who matter most to us.",
     image: theRoseGardenImage,
   },
   {
-    title: "Cocktail Hour",
-    time: "5:00 PM",
-    location: "The Terrace",
-    venue: "The Whitmore Estate",
+    title: "The Celebration",
+    time: null,
+    location: "To be confirmed",
+    venue: `${wedding.city}, ${wedding.state}`,
     description:
-      "Sip craft cocktails and enjoy hors d'oeuvres on the terrace overlooking the vineyard as the sun begins its descent.",
+      "Food, drinks and conversation to follow the ceremony. These details are still being finalised and will appear here soon.",
     image: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80",
-  },
-  {
-    title: "Reception & Dinner",
-    time: "6:30 PM",
-    location: "The Grand Ballroom",
-    venue: "The Whitmore Estate",
-    description:
-      "An evening of fine dining, heartfelt toasts, and dancing beneath crystal chandeliers. Dinner will be served family-style.",
-    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
   },
 ];
 
@@ -63,7 +65,9 @@ const EventCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         {/* Time badge */}
         <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2">
-          <span className="font-serif text-lg text-foreground">{event.time}</span>
+          <span className="font-serif text-lg text-foreground">
+            {event.time ?? "To be confirmed"}
+          </span>
         </div>
       </div>
 
@@ -128,12 +132,12 @@ const EventDetails = () => {
           className="text-center mb-16"
         >
           <p className="font-serif text-2xl md:text-3xl">
-            Saturday, September 14th, 2026
+            {wedding.dateLong}
           </p>
         </motion.div>
 
         {/* Events Grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {events.map((event, index) => (
             <EventCard key={event.title} event={event} index={index} />
           ))}
