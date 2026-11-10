@@ -18,8 +18,8 @@ export const wedding = {
   lunchTime: "11:30",
   dressCode: "Casual",
 
-  // Guests' response deadline — null until the couple sets it.
-  rsvpDeadline: null as string | null,
+  // Guests' response deadline — set to null to hide the date from the page.
+  rsvpDeadline: "6 de dezembro de 2026" as string | null,
 
   venue: "Guarda do Embaú",
   city: "Palhoça",
