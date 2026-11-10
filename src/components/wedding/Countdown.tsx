@@ -64,10 +64,10 @@ const Countdown = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="text-sm tracking-[0.3em] uppercase text-white/70 mb-4">
-            Counting Down To
+            Contagem regressiva para
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            The Big Day
+            O Grande Dia
           </h2>
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}

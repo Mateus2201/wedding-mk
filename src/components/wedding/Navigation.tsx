@@ -4,9 +4,9 @@ import { Menu, X } from "lucide-react";
 import { wedding } from "@/lib/wedding";
 
 const navLinks = [
-  { label: "Our Story", href: "#story" },
-  { label: "Details", href: "#details" },
-  { label: "RSVP", href: "#rsvp" },
+  { label: "Nossa História", href: "#story" },
+  { label: "Detalhes", href: "#details" },
+  { label: "Confirmar presença", href: "#rsvp" },
 ];
 
 const Navigation = () => {

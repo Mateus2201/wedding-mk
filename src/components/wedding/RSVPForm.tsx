@@ -19,12 +19,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Heart } from "lucide-react";
+import { wedding } from "@/lib/wedding";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Please enter your full name"),
-  email: z.string().email("Please enter a valid email address"),
+  name: z.string().min(2, "Informe seu nome completo"),
+  email: z.string().email("Informe um e-mail válido"),
   attendance: z.enum(["attending", "not-attending"], {
-    required_error: "Please select your attendance",
+    required_error: "Selecione se você vai comparecer",
   }),
   guests: z.string().optional(),
   dietary: z.string().optional(),
@@ -37,6 +38,7 @@ const RSVPForm = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [came, setCame] = useState<boolean | null>(null);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -50,7 +52,7 @@ const RSVPForm = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log("RSVP submitted:", data);
+    setCame(data.attendance === "attending");
     setIsSubmitted(true);
   };
 
@@ -79,11 +81,12 @@ const RSVPForm = () => {
               <Heart className="w-12 h-12 mx-auto mb-6 text-rose" />
             </motion.div>
             <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Thank You
+              Obrigado!
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Your response has been received. We are so grateful you'll be part
-              of our special day. We can't wait to celebrate with you.
+              {came
+                ? "Sua resposta foi recebida. Ficamos muito felizes que você faça parte do nosso dia. Mal podemos esperar para celebrar com você."
+                : "Sua resposta foi recebida. Sentiremos sua falta, mas obrigado pelo carinho e por avisar."}
             </p>
           </motion.div>
         </div>
@@ -103,14 +106,16 @@ const RSVPForm = () => {
           className="text-center mb-16 md:mb-20"
         >
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            We Hope You Can Join Us
+            Esperamos você conosco
           </p>
           <h2 className="heading-elegant font-serif text-4xl md:text-5xl lg:text-6xl">
-            Kindly Respond
+            Confirme sua presença
           </h2>
           <div className="divider-editorial mt-8" />
           <p className="text-muted-foreground mt-8 max-w-md mx-auto">
-            Please respond by August 1st, 2026
+            {wedding.rsvpDeadline
+              ? `Pedimos a gentileza de confirmar até ${wedding.rsvpDeadline}`
+              : "Pedimos que confirmem com a maior antecedência possível"}
           </p>
         </motion.div>
 
@@ -126,7 +131,7 @@ const RSVPForm = () => {
             <div className="relative">
               <img
                 src={rsvpPhoto}
-                alt="Wedding flowers"
+                alt="Flores do casamento"
                 className="w-full aspect-[3/4] object-cover"
               />
               {/* Decorative frame */}
@@ -140,9 +145,9 @@ const RSVPForm = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <p className="font-serif text-lg italic text-muted-foreground">
-                "Can't wait to celebrate with you!"
+                "Mal podemos esperar para celebrar com você!"
               </p>
-              <p className="text-sm tracking-wider uppercase mt-2 text-rose">— O & S</p>
+              <p className="text-sm tracking-wider uppercase mt-2 text-rose">— {wedding.monogram}</p>
             </motion.div>
           </motion.div>
 
@@ -161,11 +166,11 @@ const RSVPForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-sm tracking-wide uppercase">
-                        Full Name
+                        Nome completo
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Your name as it appears on the invitation"
+                          placeholder="Seu nome como está no convite"
                           className="bg-background border-border/50 focus:border-rose/50 transition-colors"
                           {...field}
                         />
@@ -182,12 +187,12 @@ const RSVPForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-sm tracking-wide uppercase">
-                        Email Address
+                        E-mail
                       </FormLabel>
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="your@email.com"
+                          placeholder="seu@email.com"
                           className="bg-background border-border/50 focus:border-rose/50 transition-colors"
                           {...field}
                         />
@@ -204,7 +209,7 @@ const RSVPForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-sm tracking-wide uppercase">
-                        Will You Attend?
+                        Você vai comparecer?
                       </FormLabel>
                       <FormControl>
                         <RadioGroup
@@ -222,7 +227,7 @@ const RSVPForm = () => {
                               htmlFor="attending"
                               className="font-serif text-lg cursor-pointer"
                             >
-                              Joyfully Accept
+                              Confirmo presença
                             </Label>
                           </div>
                           <div className="flex items-center space-x-3">
@@ -235,7 +240,7 @@ const RSVPForm = () => {
                               htmlFor="not-attending"
                               className="font-serif text-lg cursor-pointer"
                             >
-                              Regretfully Decline
+                              Não poderei comparecer
                             </Label>
                           </div>
                         </RadioGroup>
@@ -260,7 +265,7 @@ const RSVPForm = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm tracking-wide uppercase">
-                            Number of Guests (Including Yourself)
+                            Número de convidados (incluindo você)
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -284,11 +289,11 @@ const RSVPForm = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm tracking-wide uppercase">
-                            Dietary Restrictions
+                            Restrições alimentares
                           </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Vegetarian, vegan, allergies, etc."
+                              placeholder="Vegetariano, vegano, alergias etc."
                               className="bg-background border-border/50 focus:border-rose/50 transition-colors"
                               {...field}
                             />
@@ -307,11 +312,11 @@ const RSVPForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-sm tracking-wide uppercase">
-                        A Note for the Couple (Optional)
+                        Uma mensagem para o casal (opcional)
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Share your wishes or a message..."
+                          placeholder="Deixe seus votos ou um recado..."
                           className="bg-background border-border/50 focus:border-rose/50 transition-colors min-h-[120px] resize-none"
                           {...field}
                         />
@@ -331,7 +336,7 @@ const RSVPForm = () => {
                     type="submit"
                     className="w-full bg-foreground text-background hover:bg-foreground/90 hover:shadow-lg hover:shadow-foreground/10 transition-all duration-300 py-6 text-sm tracking-[0.2em] uppercase"
                   >
-                    Send Response
+                    Enviar resposta
                   </Button>
                 </motion.div>
               </form>

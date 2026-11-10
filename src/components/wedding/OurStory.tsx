@@ -5,37 +5,37 @@ import { useRef } from "react";
 const timelineEvents = [
   {
     year: "2019",
-    title: "First Glance",
+    title: "Primeiro olhar",
     description:
-      "A chance meeting at a friend's gallery opening. Across the crowded room, their eyes met over champagne and whispered conversations about art.",
+      "Um encontro casual na abertura de uma galeria de um amigo. Do outro lado da sala cheia, seus olhares se cruzaram entre taças de champanhe e conversas sussurradas sobre arte.",
     image: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&q=80",
   },
   {
     year: "2020",
-    title: "The First Date",
+    title: "O primeiro encontro",
     description:
-      "A quiet dinner at a candlelit bistro in the city. Hours passed like minutes as they discovered shared dreams and endless laughter.",
+      "Um jantar tranquilo em um bistrô à luz de velas. As horas passaram como minutos enquanto descobriam sonhos em comum e um riso sem fim.",
     image: "https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=600&q=80",
   },
   {
     year: "2022",
-    title: "Adventures Together",
+    title: "Aventuras a dois",
     description:
-      "From the cobblestone streets of Paris to the sunlit shores of Amalfi, every journey became more beautiful with each other.",
+      "Das ruas de paralelepípedo de Paris às praias ensolaradas de Amalfi, cada viagem ficou mais bonita com o outro por perto.",
     image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80",
   },
   {
     year: "2024",
-    title: "The Proposal",
+    title: "O pedido",
     description:
-      "Under a canopy of stars at their favorite vineyard, he asked the question they both knew the answer to. She said yes.",
+      "Sob um céu estrelado, no lugar que mais amavam, ele fez a pergunta que os dois já sabiam a resposta. Ela disse sim.",
     image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600&q=80",
   },
   {
     year: "2026",
-    title: "Forever Begins",
+    title: "Para sempre começa",
     description:
-      "This December, surrounded by those they love most, two become one. This is just the beginning of their greatest adventure.",
+      "Neste dezembro, rodeados por quem mais amam, dois se tornam um. Este é apenas o começo da maior aventura de suas vidas.",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
   },
 ];
@@ -94,7 +94,7 @@ const TimelineItem = ({
         <motion.h3 
           className="font-serif text-2xl md:text-3xl mb-4"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
         >
           {event.title}
@@ -102,7 +102,7 @@ const TimelineItem = ({
         <motion.p 
           className="text-muted-foreground leading-relaxed"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
         >
           {event.description}
@@ -128,10 +128,10 @@ const OurStory = () => {
           className="text-center mb-16 md:mb-24"
         >
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            How It All Began
+            Como tudo começou
           </p>
           <h2 className="heading-elegant font-serif text-4xl md:text-5xl lg:text-6xl">
-            Our Story
+            Nossa História
           </h2>
           <div className="divider-editorial mt-8" />
         </motion.div>
@@ -144,7 +144,7 @@ const OurStory = () => {
           className="max-w-2xl mx-auto text-center mb-16 md:mb-24"
         >
           <p className="font-serif text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
-            "Whatever our souls are made of, his and mine are the same."
+            "Seja qual for do que nossas almas são feitas, a dele e a minha são a mesma."
           </p>
           <cite className="block mt-4 text-sm tracking-wider uppercase text-muted-foreground/70 not-italic">
             — Emily Brontë
