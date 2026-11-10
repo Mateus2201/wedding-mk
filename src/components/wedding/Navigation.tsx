@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { wedding } from "@/lib/wedding";
 
 const navLinks = [
   { label: "Our Story", href: "#story" },
@@ -40,7 +41,7 @@ const Navigation = () => {
               isScrolled ? "text-foreground" : "text-white"
             }`}
           >
-            O & S
+            {wedding.monogram}
           </a>
 
           {/* Desktop Navigation */}
@@ -83,7 +84,7 @@ const Navigation = () => {
           className="fixed inset-0 z-50 bg-background"
         >
           <div className="container mx-auto px-6 py-6 flex items-center justify-between">
-            <span className="font-serif text-xl tracking-wide">O & S</span>
+            <span className="font-serif text-xl tracking-wide">{wedding.monogram}</span>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 hover:opacity-70 transition-opacity"

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import { wedding } from "@/lib/wedding";
 
 const footerVariants = {
   hidden: { opacity: 0 },
@@ -34,7 +35,7 @@ const Footer = () => {
           className="text-center"
         >
           <div className="inline-flex items-center gap-4 mb-8">
-            <span className="font-serif text-4xl md:text-5xl">O</span>
+            <span className="font-serif text-4xl md:text-5xl">{wedding.initialOne}</span>
             <motion.div
               animate={{ 
                 scale: [1, 1.15, 1],
@@ -47,7 +48,7 @@ const Footer = () => {
             >
               <Heart className="w-5 h-5 text-rose" />
             </motion.div>
-            <span className="font-serif text-4xl md:text-5xl">S</span>
+            <span className="font-serif text-4xl md:text-5xl">{wedding.initialTwo}</span>
           </div>
 
           <motion.p 
@@ -57,7 +58,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            September 14, 2026
+            {wedding.dateShort}
           </motion.p>
           <motion.p 
             className="text-sm tracking-[0.2em] uppercase text-background/60"
@@ -66,7 +67,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Napa Valley, California
+            {wedding.city}, {wedding.state}
           </motion.p>
 
           <motion.div 

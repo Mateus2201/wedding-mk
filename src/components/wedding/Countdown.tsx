@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Heart } from "lucide-react";
+import { wedding } from "@/lib/wedding";
 
 const Countdown = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
-  const weddingDate = new Date("2026-09-14T16:00:00");
+  const weddingDate = new Date(wedding.dateISO);
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -115,7 +116,7 @@ const Countdown = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="font-serif text-xl md:text-2xl italic text-white/80 mt-12"
         >
-          September 14, 2026 • Napa Valley
+          {wedding.dateShort} • {wedding.venue}
         </motion.p>
       </div>
     </section>
