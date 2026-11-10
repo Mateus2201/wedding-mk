@@ -85,7 +85,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Made with love for our forever
+            Feito com amor para o nosso para sempre
           </motion.p>
         </motion.div>
       </div>

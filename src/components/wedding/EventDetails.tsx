@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Clock, Sparkles } from "lucide-react";
+import { MapPin, Sparkles } from "lucide-react";
 import theRoseGardenImage from "@/assets/therosegarden.jpg";
 import { wedding } from "@/lib/wedding";
 
@@ -17,22 +17,22 @@ type WeddingEvent = {
 
 const events: WeddingEvent[] = [
   {
-    title: "The Ceremony",
+    title: "A Cerimônia",
     time: wedding.ceremonyTime,
     location: wedding.venue,
     venue: `${wedding.city}, ${wedding.state}`,
     address: wedding.address,
     description:
-      "We begin the day together as we exchange our vows, surrounded by the people who matter most to us.",
+      "Começamos o dia juntos enquanto trocamos nossos votos, rodeados pelas pessoas que mais importam para nós.",
     image: theRoseGardenImage,
   },
   {
-    title: "The Celebration",
-    time: null,
-    location: "To be confirmed",
+    title: "O Almoço",
+    time: wedding.lunchTime,
+    location: "Local a confirmar",
     venue: `${wedding.city}, ${wedding.state}`,
     description:
-      "Food, drinks and conversation to follow the ceremony. These details are still being finalised and will appear here soon.",
+      "Depois da cerimônia, seguimos juntos para um almoço de celebração.",
     image: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80",
   },
 ];
@@ -41,7 +41,7 @@ const EventCard = ({
   event,
   index,
 }: {
-  event: (typeof events)[0];
+  event: WeddingEvent;
   index: number;
 }) => {
   const ref = useRef(null);
@@ -66,7 +66,7 @@ const EventCard = ({
         {/* Time badge */}
         <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2">
           <span className="font-serif text-lg text-foreground">
-            {event.time ?? "To be confirmed"}
+            {event.time ?? "A confirmar"}
           </span>
         </div>
       </div>
@@ -116,10 +116,10 @@ const EventDetails = () => {
           className="text-center mb-16 md:mb-24"
         >
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            The Celebration
+            A celebração
           </p>
           <h2 className="heading-elegant font-serif text-4xl md:text-5xl lg:text-6xl">
-            Event Details
+            Detalhes do evento
           </h2>
           <div className="divider-editorial mt-8" />
         </motion.div>
@@ -162,7 +162,7 @@ const EventDetails = () => {
               <Sparkles className="w-4 h-4 text-rose" />
             </motion.div>
             <span className="text-sm tracking-[0.2em] uppercase">
-              Attire: Black Tie Optional
+              Traje: {wedding.dressCode}
             </span>
             <motion.div
               animate={{ rotate: [0, -10, 10, 0] }}

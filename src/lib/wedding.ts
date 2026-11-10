@@ -10,16 +10,21 @@ export const wedding = {
 
   // Ceremony start — also drives the countdown timer.
   dateISO: "2026-12-21T10:00:00",
-  dateLong: "Monday, December 21st, 2026",
-  dateShort: "December 21, 2026",
-  dateSpelledA: "December Twenty-One",
-  dateSpelledB: "Two Thousand Twenty Six",
-  ceremonyTime: "10:00 AM",
+  dateLong: "segunda-feira, 21 de dezembro de 2026",
+  dateShort: "21 de dezembro de 2026",
+  dateSpelledA: "Vinte e Um de Dezembro",
+  dateSpelledB: "Dois Mil e Vinte e Seis",
+  ceremonyTime: "10:00",
+  lunchTime: "11:30",
+  dressCode: "Casual",
+
+  // Guests' response deadline — null until the couple sets it.
+  rsvpDeadline: null as string | null,
 
   venue: "Guarda do Embaú",
   city: "Palhoça",
   state: "Santa Catarina",
-  country: "Brazil",
-  address: "Guarda do Embaú, Palhoça — Santa Catarina, Brazil",
+  country: "Brasil",
+  address: "Guarda do Embaú, Palhoça — Santa Catarina, Brasil",
   locationLine: "Guarda do Embaú • Palhoça, Santa Catarina",
 } as const;
