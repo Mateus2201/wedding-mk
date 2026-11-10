@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { wedding } from "@/lib/wedding";
 
 const Hero = () => {
   return (
@@ -71,11 +72,11 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="heading-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-white"
           >
-            <span className="block">Olivia</span>
+            <span className="block">{wedding.partnerOne}</span>
             <span className="block text-3xl sm:text-4xl md:text-5xl font-normal italic text-white/70 my-4">
               &
             </span>
-            <span className="block">Sebastian</span>
+            <span className="block">{wedding.partnerTwo}</span>
           </motion.h1>
 
           {/* Divider with subtle shimmer */}
@@ -105,10 +106,10 @@ const Hero = () => {
             className="space-y-2"
           >
             <p className="text-lg tracking-[0.2em] uppercase font-sans text-white/70">
-              September Fourteenth
+              {wedding.dateSpelledA}
             </p>
             <p className="font-serif text-2xl sm:text-3xl italic text-white">
-              Two Thousand Twenty Six
+              {wedding.dateSpelledB}
             </p>
           </motion.div>
 
@@ -119,7 +120,7 @@ const Hero = () => {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="text-sm tracking-[0.15em] uppercase text-white/60 mt-8"
           >
-            The Whitmore Estate • Napa Valley, California
+            {wedding.locationLine}
           </motion.p>
         </motion.div>
 

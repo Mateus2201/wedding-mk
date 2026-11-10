@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
+import { wedding } from "@/lib/wedding";
 
 const Marquee = () => {
-  const text = "Olivia & Sebastian • September 14, 2026 • Napa Valley • ";
+  const text = `${wedding.partnerOne} & ${wedding.partnerTwo} • ${wedding.dateShort} • ${wedding.venue} • `;
 
   return (
     <div className="py-6 bg-accent/30 border-y border-border/30 overflow-hidden">

@@ -35,7 +35,7 @@ const timelineEvents = [
     year: "2026",
     title: "Forever Begins",
     description:
-      "This September, surrounded by those they love most, two become one. This is just the beginning of their greatest adventure.",
+      "This December, surrounded by those they love most, two become one. This is just the beginning of their greatest adventure.",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
   },
 ];
