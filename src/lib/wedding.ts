@@ -27,4 +27,15 @@ export const wedding = {
   country: "Brasil",
   address: "Guarda do Embaú, Palhoça — Santa Catarina, Brasil",
   locationLine: "Guarda do Embaú • Palhoça, Santa Catarina",
+
+  // Official wedding palette, shown in this exact order.
+  palette: [
+    { name: "Off-white", hex: "#F5F0E7", use: "Tecidos, papelaria e decoração" },
+    { name: "Branco puro", hex: "#FFFFFF", use: "Flores e vestido da noiva" },
+    { name: "Areia", hex: "#D9C9B5", use: "Vestidos e tecidos" },
+    { name: "Bege natural", hex: "#C6B49D", use: "Traje e detalhes" },
+    { name: "Taupe", hex: "#81745F", use: "Elementos rústicos e madeira" },
+    { name: "Verde oliva", hex: "#68735B", use: "Folhagens e identidade floral" },
+    { name: "Verde sálvia", hex: "#A3AA91", use: "Detalhes delicados" },
+  ],
 } as const;
