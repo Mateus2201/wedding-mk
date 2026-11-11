@@ -38,7 +38,10 @@ const Index = () => {
       <section id="rsvp">
         <RSVPForm />
       </section>
-      
+
+      {/* Optional gift list invitation — no RSVP required */}
+      <GiftsInvitation />
+
       {/* Footer */}
       <Footer />
     </main>
