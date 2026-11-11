@@ -9,13 +9,13 @@ export const giftSchema = z.object({
   enabled: z.boolean(), available: z.boolean(), image_path: z.string().max(300).nullable(),
   sort_order: z.number().int().min(0).max(100000),
 });
-export type Gift = z.infer<typeof giftSchema> & { id: string; purchased_quantity: number; funded_cents: number; reserved_quantity: number; image_url?: string };
+export type Gift = z.infer<typeof giftSchema> & { id: string; purchased_quantity: number; funded_cents: number; reserved_quantity: number; reserved_cents?: number; image_url?: string };
 export type Category = { id: string; name: string };
 export type CartItem = { gift_id: string; quantity: number };
 export const money = (cents: number) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(cents / 100);
-export const remaining = (gift: Gift) => Math.max(0, Math.min(gift.quantity - gift.purchased_quantity - gift.reserved_quantity, gift.target_cents === null ? Infinity : Math.ceil((gift.target_cents - gift.funded_cents) / gift.price_cents)));
+export const remaining = (gift: Gift) => Math.max(0, Math.min(gift.quantity - gift.purchased_quantity - gift.reserved_quantity, gift.target_cents === null ? Infinity : Math.ceil((gift.target_cents - gift.funded_cents - (gift.reserved_cents || 0)) / gift.price_cents)));
 export const selectable = (gift: Gift) => gift.enabled && gift.available && remaining(gift) > 0;
-export const unitPrice = (gift: Gift, quantity: number) => gift.target_cents === null ? gift.price_cents * quantity : Math.min(gift.price_cents * quantity, Math.max(0, gift.target_cents - gift.funded_cents));
+export const unitPrice = (gift: Gift, quantity: number) => gift.target_cents === null ? gift.price_cents * quantity : Math.min(gift.price_cents * quantity, Math.max(0, gift.target_cents - gift.funded_cents - (gift.reserved_cents || 0)));
 export function cartTotal(gifts: Gift[], items: CartItem[]) {
   return items.reduce((sum, item) => { const gift = gifts.find(g => g.id === item.gift_id); return sum + (gift ? unitPrice(gift, item.quantity) : 0); }, 0);
 }

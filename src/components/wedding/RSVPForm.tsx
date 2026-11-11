@@ -22,6 +22,7 @@ import { Heart } from "lucide-react";
 import { wedding } from "@/lib/wedding";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
@@ -37,6 +38,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const RSVPForm = () => {
+  const navigate = useNavigate();
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -70,6 +72,10 @@ const RSVPForm = () => {
     }
     setCame(attending);
     setIsSubmitted(true);
+    sessionStorage.setItem("wedding-guest-name", data.name.trim());
+    sessionStorage.setItem("wedding-guest-email", data.email.trim());
+    toast.success("Sua resposta foi recebida. Obrigado pelo carinho!");
+    navigate("/presentes");
   };
 
   const attendance = form.watch("attendance");

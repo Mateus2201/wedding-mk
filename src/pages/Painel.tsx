@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { wedding } from "@/lib/wedding";
+import { wishlistApi } from "@/lib/wishlist-api";
 
 type Rsvp = {
   id: string; name: string; email: string; attending: boolean; party_size: number;
@@ -30,7 +31,12 @@ const Painel = () => {
     if (fnError) {
       try { payload = await (fnError as { context?: Response }).context?.json(); } catch { payload = null; }
     }
-    if (payload?.rsvps) { setRsvps(payload.rsvps); setStats(payload.stats); }
+    if (payload?.rsvps) {
+      setRsvps(payload.rsvps); setStats(payload.stats);
+      if (!sessionStorage.getItem("couple-session")) {
+        try { const { token } = await wishlistApi<{ token: string }>("login", { passcode }, true); sessionStorage.setItem("couple-session", token); } catch { /* Gift pages request a fresh login if needed. */ }
+      }
+    }
     if (payload?.summary) setSummary(payload.summary);
     if (fnError || payload?.error) setError(payload?.error ?? "Algo deu errado.");
     setLoading(null);
@@ -69,7 +75,11 @@ const Painel = () => {
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground">{wedding.monogram}</p>
             <h1 className="font-serif text-4xl md:text-5xl">Painel dos noivos</h1>
           </div>
-          <Button variant="outline" onClick={() => load(false)} disabled={loading !== null}>Atualizar</Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" asChild><Link to="/painel/presentes">Gerenciar presentes</Link></Button>
+            <Button variant="outline" asChild><Link to="/painel/relatorios">Relatórios</Link></Button>
+            <Button variant="outline" onClick={() => load(false)} disabled={loading !== null}>Atualizar</Button>
+          </div>
         </header>
 
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
