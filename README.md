@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+# Wedding Invite
 
-## Project info
+TEMPLATE 1 — Modern Editorial Romance
+Clean, fashion, magazine-like
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Prompt:
 
-## How can I edit this code?
+Remix this wedding website into a modern editorial romance style, inspired by high-end fashion magazines and contemporary art direction.
 
-There are several ways of editing your application.
+Keep the same page structure and components, but redesign everything with a minimal, chic and editorial aesthetic.
 
-**Use Lovable**
+Visual Direction
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Background: off-white / light sand
 
-Changes made via Lovable will be committed automatically to this repo.
+Primary color: soft black or dark charcoal
 
-**Use your preferred IDE**
+Accent color: muted blush or dusty rose
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Remove heavy reds — everything more subtle
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Typography
 
-Follow these steps:
+Headings: elegant serif (Canela, Editorial New, or similar)
+
+Body: clean modern sans (Inter, Söhne)
+
+Headlines still very large, but calmer and more refined
+
+Interactions
+
+Very subtle animations
+
+Slow fades and gentle scroll reveals
+
+Marquee stays, but thinner, lighter, slower
+
+Content Tone
+
+Calm, poetic, refined
+
+Less playful, more timeless
+
+Overall Feel
+→ Luxury wedding, Vogue editorial, quiet confidence
+
+This project was built with [Lovable](https://lovable.dev).
+
+**Live app**: https://wedding-mk.lovable.app
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ac1b91a4-e07e-4174-8213-b190ed3a4010).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
