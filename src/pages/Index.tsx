@@ -6,6 +6,7 @@ import OurStory from "@/components/wedding/OurStory";
 import Countdown from "@/components/wedding/Countdown";
 import EventDetails from "@/components/wedding/EventDetails";
 import RSVPForm from "@/components/wedding/RSVPForm";
+import GiftsInvitation from "@/components/wedding/GiftsInvitation";
 import Footer from "@/components/wedding/Footer";
 
 const Index = () => {
@@ -37,7 +38,10 @@ const Index = () => {
       <section id="rsvp">
         <RSVPForm />
       </section>
-      
+
+      {/* Optional gift list invitation — no RSVP required */}
+      <GiftsInvitation />
+
       {/* Footer */}
       <Footer />
     </main>
