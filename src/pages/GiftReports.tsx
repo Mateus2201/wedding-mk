@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { financials, money, statusNames, remaining, type Transaction, type Gift } from "@/lib/gifts";
 import { wishlistApi } from "@/lib/wishlist-api";
-function Reports() {
+export function Reports() {
   const [orders, setOrders] = useState<Transaction[]>([]), [gifts, setGifts] = useState<Gift[]>([]), [loading, setLoading] = useState(true), [error, setError] = useState(""), [query, setQuery] = useState(""), [status, setStatus] = useState("all"), [method, setMethod] = useState("all"), [category, setCategory] = useState("all"), [from, setFrom] = useState(""), [to, setTo] = useState("");
   const load = async () => { setLoading(true); setError(""); try { const [data, catalog] = await Promise.all([wishlistApi<{ orders: Transaction[] }>("reports", {}, true), wishlistApi<{ gifts: Gift[] }>("catalog", {}, true)]); setOrders(data.orders); setGifts(catalog.gifts); } catch (e) { setError(e instanceof Error ? e.message : "Não foi possível carregar."); } finally { setLoading(false); } };
   useEffect(() => { load(); }, []);

@@ -1,6 +1,11 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { EmbeddedPanel } from "@/components/wedding/WishlistLayout";
+import CoupleAccess from "@/components/wedding/CoupleAccess";
+import { Manager } from "./ManageGifts";
+import { Reports } from "./GiftReports";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +25,8 @@ const Painel = () => {
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState<"list" | "ai" | null>(null);
   const [error, setError] = useState("");
+  const [params, setParams] = useSearchParams();
+  const tab = params.get("aba") || "presencas";
 
   const load = async (summarize: boolean) => {
     setLoading(summarize ? "ai" : "list");
@@ -69,19 +76,29 @@ const Painel = () => {
 
   return (
     <main className="min-h-screen py-16 px-6">
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-6xl mx-auto space-y-12">
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground">{wedding.monogram}</p>
             <h1 className="font-serif text-4xl md:text-5xl">Painel dos noivos</h1>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button variant="outline" asChild><Link to="/painel/presentes">Gerenciar presentes</Link></Button>
-            <Button variant="outline" asChild><Link to="/painel/relatorios">Relatórios</Link></Button>
+            <Button variant="outline" asChild><Link to="/presentes">Ver lista pública</Link></Button>
             <Button variant="outline" onClick={() => load(false)} disabled={loading !== null}>Atualizar</Button>
           </div>
         </header>
 
+        <Tabs value={tab} onValueChange={(v) => setParams({ aba: v }, { replace: true })}>
+        <TabsList className="mb-8 flex-wrap h-auto">
+          <TabsTrigger value="presencas">Presenças</TabsTrigger>
+          <TabsTrigger value="presentes">Presentes</TabsTrigger>
+          <TabsTrigger value="relatorios">Relatórios</TabsTrigger>
+        </TabsList>
+        <EmbeddedPanel.Provider value={true}>
+          <TabsContent value="presentes"><CoupleAccess><Manager /></CoupleAccess></TabsContent>
+          <TabsContent value="relatorios"><CoupleAccess><Reports /></CoupleAccess></TabsContent>
+        </EmbeddedPanel.Provider>
+        <TabsContent value="presencas" className="space-y-12">
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {cards.map(([label, value]) => (
             <div key={label} className="border border-border p-6 bg-card">
@@ -131,6 +148,8 @@ const Painel = () => {
             </table>
           </div>
         </section>
+        </TabsContent>
+        </Tabs>
       </div>
     </main>
   );
