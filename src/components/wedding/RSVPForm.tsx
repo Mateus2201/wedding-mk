@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/form";
 import { Heart } from "lucide-react";
 import { wedding } from "@/lib/wedding";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
@@ -51,8 +53,22 @@ const RSVPForm = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    setCame(data.attendance === "attending");
+  const onSubmit = async (data: FormData) => {
+    const attending = data.attendance === "attending";
+    const size = attending ? Math.min(Math.max(parseInt(data.guests || "1", 10) || 1, 1), 5) : 0;
+    const { error } = await supabase.from("rsvps").insert({
+      name: data.name.trim(),
+      email: data.email.trim(),
+      attending,
+      party_size: size,
+      dietary: attending && data.dietary?.trim() ? data.dietary.trim() : null,
+      message: data.message?.trim() || null,
+    });
+    if (error) {
+      toast.error("Não conseguimos enviar sua resposta. Tente novamente.");
+      return;
+    }
+    setCame(attending);
     setIsSubmitted(true);
   };
 
@@ -334,9 +350,10 @@ const RSVPForm = () => {
                 >
                   <Button
                     type="submit"
+                    disabled={form.formState.isSubmitting}
                     className="w-full bg-foreground text-background hover:bg-foreground/90 hover:shadow-lg hover:shadow-foreground/10 transition-all duration-300 py-6 text-sm tracking-[0.2em] uppercase"
                   >
-                    Enviar resposta
+                    {form.formState.isSubmitting ? "Enviando..." : "Enviar resposta"}
                   </Button>
                 </motion.div>
               </form>

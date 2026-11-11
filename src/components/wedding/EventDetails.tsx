@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { MapPin, Sparkles } from "lucide-react";
 import theRoseGardenImage from "@/assets/therosegarden.jpg";
 import { wedding } from "@/lib/wedding";
+import ColorPalette from "./ColorPalette";
 
 type WeddingEvent = {
   title: string;
@@ -172,6 +173,8 @@ const EventDetails = () => {
             </motion.div>
           </motion.div>
         </motion.div>
+
+        <ColorPalette />
       </div>
     </section>
   );
