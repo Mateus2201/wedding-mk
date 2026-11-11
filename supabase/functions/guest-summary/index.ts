@@ -1,5 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { createResponsesCall } from "../_shared/responses.ts";
+import { authorized } from "../_shared/wishlist.ts";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -12,10 +13,8 @@ const json = (body: unknown, status = 200) =>
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   try {
-    const { passcode, summarize } = await req.json().catch(() => ({}));
-    const expected = Deno.env.get("COUPLE_PASSCODE");
-    if (!expected) return json({ error: "A senha do painel ainda não foi configurada." }, 500);
-    if (typeof passcode !== "string" || passcode !== expected) return json({ error: "Senha incorreta." }, 401);
+    const { token, summarize } = await req.json().catch(() => ({}));
+    if (!await authorized(token)) return json({ error: "Sua sessão expirou. Entre novamente." }, 401);
 
     const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
     const { data: rsvps, error } = await db.from("rsvps").select("*").order("created_at", { ascending: false });
