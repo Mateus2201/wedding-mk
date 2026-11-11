@@ -1,7 +1,7 @@
 # Lista de presentes
-- [ ] Catálogo público, seleção múltipla e redirecionamento após confirmação de presença.
-- [ ] Gestão privada de presentes, categorias e imagens com persistência.
-- [ ] Pedidos, reservas atômicas e estrutura segura de pagamentos e confirmações.
-- [ ] Relatórios privados, filtros e exportação CSV.
-- [ ] Testes de regras e verificação das páginas.
+- [x] Catálogo público, seleção múltipla e redirecionamento após confirmação de presença.
+- [x] Gestão privada de presentes, categorias e imagens com persistência.
+- [x] Pedidos, reservas atômicas e estrutura segura de pagamentos e confirmações (checkout bloqueado antes de reservar enquanto não há provedor).
+- [x] Relatórios privados, filtros e exportação CSV.
+- [x] Nove testes de regras; cadastro, leitura pública, imagem, seleção, total, acesso privado, CSV e redirecionamento verificados.
 - [ ] Ativar pagamentos reais: aguarda conexão e credenciais do provedor.
