@@ -8,7 +8,7 @@ import CoupleAccess from "@/components/wedding/CoupleAccess";
 import GiftsManager from "@/components/panel/GiftsManager";
 import GiftReports from "@/components/panel/GiftReports";
 import { wedding } from "@/lib/wedding";
-import { wishlistApi } from "@/lib/wishlist-api";
+import { supabase } from "@/integrations/supabase/client";
 
 type Rsvp = {
   id: string; name: string; email: string; attending: boolean; party_size: number;
@@ -27,7 +27,10 @@ function Attendance() {
   const load = async (summarize: boolean) => {
     setLoading(summarize ? "ai" : "list"); setError("");
     try {
-      const data = await wishlistApi<Payload>("rsvps", { summarize }, true);
+      const { data: ok, error: fnError } = await supabase.functions.invoke("guest-summary", { body: { token: localStorage.getItem("couple-session"), summarize: summarize === true } });
+      let data: Payload & { error?: string } = ok ?? {};
+      if (fnError) { try { data = await (fnError as { context?: Response }).context?.json(); } catch { data = {}; } }
+      if (data.error || fnError) { if (data.rsvps) setRsvps(data.rsvps); throw new Error(data.error || "Algo deu errado."); }
       if (data.rsvps) setRsvps(data.rsvps);
       if (data.stats) setStats(data.stats);
       if (data.summary) setSummary(data.summary);
