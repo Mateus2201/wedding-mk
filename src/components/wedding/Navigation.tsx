@@ -6,6 +6,7 @@ import { wedding } from "@/lib/wedding";
 const navLinks = [
   { label: "Nossa História", href: "#story" },
   { label: "Detalhes", href: "#details" },
+  { label: "Presentes", href: "/presentes" },
   { label: "Confirmar presença", href: "#rsvp" },
 ];
 

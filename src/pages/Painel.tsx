@@ -69,7 +69,11 @@ const Painel = () => {
             <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground">{wedding.monogram}</p>
             <h1 className="font-serif text-4xl md:text-5xl">Painel dos noivos</h1>
           </div>
-          <Button variant="outline" onClick={() => load(false)} disabled={loading !== null}>Atualizar</Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" asChild><Link to="/painel/presentes">Gerenciar presentes</Link></Button>
+            <Button variant="outline" asChild><Link to="/painel/relatorios">Relatórios</Link></Button>
+            <Button variant="outline" onClick={() => load(false)} disabled={loading !== null}>Atualizar</Button>
+          </div>
         </header>
 
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
