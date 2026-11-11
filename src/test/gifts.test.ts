@@ -9,6 +9,7 @@ describe("wishlist rules", () => {
   it("adds multiple gifts into one total", () => expect(cartTotal([gift, { ...gift, id: "b", price_cents: 20000 }], [{ gift_id: "a", quantity: 1 }, { gift_id: "b", quantity: 2 }])).toBe(52500));
   it("caps a contribution at the remaining target", () => expect(cartTotal([{ ...gift, target_cents: 30000, funded_cents: 25000 }], [{ gift_id: "a", quantity: 1 }])).toBe(5000));
   it("does not select fully funded gifts", () => expect(selectable({ ...gift, target_cents: 30000, funded_cents: 30000 })).toBe(false));
+  it("does not exceed a target already held by another checkout", () => expect(remaining({ ...gift, target_cents: 30000, funded_cents: 20000, reserved_cents: 10000 })).toBe(0));
   it("counts confirmed records once and excludes pending or refunded from received", () => {
     const base = { guest_name: "Teste", email: "teste@example.com", anonymous: false, message: null, method: "pix", created_at: "2026-11-11", order_items: [{ gift_id: "a", name: "Presente", category: null, quantity: 2, amount_cents: 10000 }] };
     const orders: Transaction[] = [{ ...base, id: "1", amount_cents: 10000, status: "paid" }, { ...base, id: "2", amount_cents: 5000, status: "pending" }, { ...base, id: "3", amount_cents: 3000, status: "refunded" }];

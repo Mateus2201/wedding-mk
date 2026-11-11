@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { wedding } from "@/lib/wedding";
+import { wishlistApi } from "@/lib/wishlist-api";
 
 type Rsvp = {
   id: string; name: string; email: string; attending: boolean; party_size: number;
@@ -30,7 +31,12 @@ const Painel = () => {
     if (fnError) {
       try { payload = await (fnError as { context?: Response }).context?.json(); } catch { payload = null; }
     }
-    if (payload?.rsvps) { setRsvps(payload.rsvps); setStats(payload.stats); }
+    if (payload?.rsvps) {
+      setRsvps(payload.rsvps); setStats(payload.stats);
+      if (!sessionStorage.getItem("couple-session")) {
+        try { const { token } = await wishlistApi<{ token: string }>("login", { passcode }, true); sessionStorage.setItem("couple-session", token); } catch { /* Gift pages request a fresh login if needed. */ }
+      }
+    }
     if (payload?.summary) setSummary(payload.summary);
     if (fnError || payload?.error) setError(payload?.error ?? "Algo deu errado.");
     setLoading(null);
