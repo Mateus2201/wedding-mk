@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 const blank = { name: "", description: "", category_id: null, price_cents: 10000, quantity: 1, target_cents: null, enabled: true, available: true, image_path: null, sort_order: 0 };
 type Draft = ReturnType<typeof giftSchema.parse>;
-function Manager() {
+export function Manager() {
   const [gifts, setGifts] = useState<Gift[]>([]), [categories, setCategories] = useState<Category[]>([]), [draft, setDraft] = useState<Draft | null>(null), [preview, setPreview] = useState<Gift | null>(null), [busy, setBusy] = useState(false), [error, setError] = useState(""), [categoryName, setCategoryName] = useState(""), [categoryId, setCategoryId] = useState<string | undefined>();
   const load = async () => { try { const data = await wishlistApi<{ gifts: Gift[]; categories: Category[] }>("catalog", {}, true); setGifts(data.gifts); setCategories(data.categories); } catch (e) { setError(e instanceof Error ? e.message : "Não foi possível carregar."); } };
   useEffect(() => { load(); }, []);
