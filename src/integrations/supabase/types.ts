@@ -14,6 +14,211 @@ export type Database = {
   }
   public: {
     Tables: {
+      gift_categories: {
+        Row: {
+          id: string
+          name: string
+        }
+        Insert: {
+          id?: string
+          name: string
+        }
+        Update: {
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      gift_order_items: {
+        Row: {
+          amount_cents: number
+          category: string | null
+          gift_id: string
+          id: string
+          name: string
+          order_id: string
+          quantity: number
+        }
+        Insert: {
+          amount_cents: number
+          category?: string | null
+          gift_id: string
+          id?: string
+          name: string
+          order_id: string
+          quantity: number
+        }
+        Update: {
+          amount_cents?: number
+          category?: string | null
+          gift_id?: string
+          id?: string
+          name?: string
+          order_id?: string
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_order_items_gift_id_fkey"
+            columns: ["gift_id"]
+            isOneToOne: false
+            referencedRelation: "gifts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "gift_order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "gift_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gift_orders: {
+        Row: {
+          amount_cents: number
+          anonymous: boolean
+          created_at: string
+          email: string
+          expires_at: string
+          guest_name: string
+          id: string
+          lookup_token: string
+          message: string | null
+          method: string
+          paid_at: string | null
+          provider: string
+          provider_reference: string | null
+          status: string
+        }
+        Insert: {
+          amount_cents: number
+          anonymous?: boolean
+          created_at?: string
+          email: string
+          expires_at?: string
+          guest_name: string
+          id?: string
+          lookup_token?: string
+          message?: string | null
+          method: string
+          paid_at?: string | null
+          provider?: string
+          provider_reference?: string | null
+          status?: string
+        }
+        Update: {
+          amount_cents?: number
+          anonymous?: boolean
+          created_at?: string
+          email?: string
+          expires_at?: string
+          guest_name?: string
+          id?: string
+          lookup_token?: string
+          message?: string | null
+          method?: string
+          paid_at?: string | null
+          provider?: string
+          provider_reference?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      gifts: {
+        Row: {
+          available: boolean
+          category_id: string | null
+          created_at: string
+          description: string
+          enabled: boolean
+          funded_cents: number
+          id: string
+          image_path: string | null
+          name: string
+          price_cents: number
+          purchased_quantity: number
+          quantity: number
+          sort_order: number
+          target_cents: number | null
+        }
+        Insert: {
+          available?: boolean
+          category_id?: string | null
+          created_at?: string
+          description?: string
+          enabled?: boolean
+          funded_cents?: number
+          id?: string
+          image_path?: string | null
+          name: string
+          price_cents: number
+          purchased_quantity?: number
+          quantity?: number
+          sort_order?: number
+          target_cents?: number | null
+        }
+        Update: {
+          available?: boolean
+          category_id?: string | null
+          created_at?: string
+          description?: string
+          enabled?: boolean
+          funded_cents?: number
+          id?: string
+          image_path?: string | null
+          name?: string
+          price_cents?: number
+          purchased_quantity?: number
+          quantity?: number
+          sort_order?: number
+          target_cents?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gifts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "gift_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_webhook_events: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          order_id: string
+          provider: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          order_id: string
+          provider: string
+          status: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          order_id?: string
+          provider?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_webhook_events_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "gift_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rsvps: {
         Row: {
           attending: boolean
@@ -52,7 +257,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      confirm_gift_payment: {
+        Args: {
+          p_amount: number
+          p_event_id: string
+          p_provider: string
+          p_reference: string
+          p_status: string
+        }
+        Returns: boolean
+      }
+      reserve_gifts: {
+        Args: {
+          p_anonymous: boolean
+          p_email: string
+          p_guest_name: string
+          p_items: Json
+          p_message: string
+          p_method: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
