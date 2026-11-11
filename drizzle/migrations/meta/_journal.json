@@ -15,6 +15,13 @@
       "when": 1794395708652,
       "tag": "0001_tighten_rsvp_insert_policy",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794398095989,
+      "tag": "0002_wedding_gift_wishlist",
+      "breakpoints": true
     }
   ]
 }
