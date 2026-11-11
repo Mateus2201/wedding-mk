@@ -8,6 +8,13 @@
       "when": 1794395337154,
       "tag": "0000_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794395708652,
+      "tag": "0001_tighten_rsvp_insert_policy",
+      "breakpoints": true
     }
   ]
 }
