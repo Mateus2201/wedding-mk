@@ -25,7 +25,7 @@ const Hero = () => {
           className="w-full h-full object-cover object-center"
         />
         {/* Elegant overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
       </motion.div>
       
       {/* Decorative elements with subtle animation */}
