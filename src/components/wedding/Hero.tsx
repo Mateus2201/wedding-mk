@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { wedding } from "@/lib/wedding";
+import heroVideo from "@/assets/hero-sea.mp4.asset.json";
+import heroPoster from "@/assets/hero-sea-poster.jpg.asset.json";
 
 const Hero = () => {
   return (
@@ -11,13 +13,19 @@ const Hero = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <img
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80"
-          alt="Romantic couple"
+        <video
+          src={heroVideo.url}
+          poster={heroPoster.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          tabIndex={-1}
           className="w-full h-full object-cover object-center"
         />
         {/* Elegant overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
       </motion.div>
       
       {/* Decorative elements with subtle animation */}
