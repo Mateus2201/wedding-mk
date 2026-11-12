@@ -1,9 +1,11 @@
 {
   "version": 1,
-  "asset_id": "4e632589-7f10-4110-9cd6-f29ee58dc32f",
+  "asset_id": "7b37a87f-6844-4924-b873-a7c632d838da",
   "project_id": "ac1b91a4-e07e-4174-8213-b190ed3a4010",
-  "url": "/__l5e/assets-v1/4e632589-7f10-4110-9cd6-f29ee58dc32f/hero-sea.mp4",
+  "url": "/__l5e/assets-v1/7b37a87f-6844-4924-b873-a7c632d838da/hero-sea.mp4",
+  "r2_key": "a/v1/ac1b91a4-e07e-4174-8213-b190ed3a4010/7b37a87f-6844-4924-b873-a7c632d838da/hero-sea.mp4",
   "original_filename": "hero-sea.mp4",
-  "size": 8456269,
-  "created_at": "2026-11-12T11:01:06Z"
+  "size": 2765226,
+  "content_type": "video/mp4",
+  "created_at": "2026-11-12T11:01:55Z"
 }
