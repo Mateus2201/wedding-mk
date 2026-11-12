@@ -7,35 +7,35 @@ const timelineEvents = [
     year: "2019",
     title: "Primeiro olhar",
     description:
-      "Um encontro casual na abertura de uma galeria de um amigo. Do outro lado da sala cheia, seus olhares se cruzaram entre taças de champanhe e conversas sussurradas sobre arte.",
+      "Momentos se tornam ainda mais bonitos quando podemos compartilhá-los com quem amamos.",
     image: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&q=80",
   },
   {
     year: "2020",
     title: "O primeiro encontro",
     description:
-      "Um jantar tranquilo em um bistrô à luz de velas. As horas passaram como minutos enquanto descobriam sonhos em comum e um riso sem fim.",
+      "Estamos preparando um dia muito especial, e será uma alegria imensa ter você conosco para celebrar o início deste novo capítulo das nossas vidas.",
     image: "https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=600&q=80",
   },
   {
     year: "2022",
     title: "Aventuras a dois",
     description:
-      "Das ruas de paralelepípedo de Paris às praias ensolaradas de Amalfi, cada viagem ficou mais bonita com o outro por perto.",
+      "Nosso casamento acontecerá em Santa Catarina, e sabemos que, para muitos, isso envolverá deslocamento, organização e uma viagem. Por isso, queremos que saiba que ter você presente será motivo de grande alegria para nós.",
     image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80",
   },
   {
     year: "2024",
     title: "O pedido",
     description:
-      "Sob um céu estrelado, no lugar que mais amavam, ele fez a pergunta que os dois já sabiam a resposta. Ela disse sim.",
+      "Mas, se por qualquer motivo não for possível estar conosco, compreenderemos de coração. O carinho que temos por você e a importância que ocupa em nossas vidas vão muito além da sua presença neste dia.",
     image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600&q=80",
   },
   {
     year: "2026",
     title: "Para sempre começa",
     description:
-      "Neste dezembro, rodeados por quem mais amam, dois se tornam um. Este é apenas o começo da maior aventura de suas vidas.",
+      "Preparamos tudo com muito carinho e esperamos viver essa celebração cercados de amor, leveza e pessoas queridas. Será uma alegria compartilhar esse momento com você!",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
   },
 ];
@@ -128,31 +128,44 @@ const OurStory = () => {
           className="text-center mb-16 md:mb-24"
         >
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Como tudo começou
+             • Bem-vindo ao início da nossa história •
           </p>
           <h2 className="heading-elegant font-serif text-4xl md:text-5xl lg:text-6xl">
-            Nossa História
+            Um dia especial,<br className="hidden md:inline" />
+            ao lado de pessoas especiais.
           </h2>
           <div className="divider-editorial mt-8" />
         </motion.div>
 
-        {/* Quote */}
-        <motion.blockquote
+        {/* Intro text */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={isHeaderInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-center mb-16 md:mb-24"
+          transition={{ duration: 0.9, delay: 0.5 }}
+          className="max-w-2xl mx-auto text-center mb-12 md:mb-10 space-y-4"
         >
           <p className="font-serif text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
-            "Seja qual for do que nossas almas são feitas, a dele e a minha são a mesma."
+            Momentos se tornam ainda mais bonitos quando podemos compartilhá-los com quem amamos.
           </p>
-          <cite className="block mt-4 text-sm tracking-wider uppercase text-muted-foreground/70 not-italic">
-            — Emily Brontë
-          </cite>
-        </motion.blockquote>
+          <p className="font-montserrat text-muted-foreground leading-relaxed">
+            Estamos preparando um dia muito especial, e será uma alegria imensa ter você conosco para celebrar o início deste novo capítulo das nossas vidas.
+          </p>
+          <p className="font-montserrat text-muted-foreground leading-relaxed">
+            Nosso casamento acontecerá em Santa Catarina, e sabemos que, para muitos, isso envolverá deslocamento, organização e uma viagem. Por isso, queremos que saiba que ter você presente será motivo de grande alegria para nós.
+          </p>
+          <p className="font-montserrat text-muted-foreground leading-relaxed">
+            Mas, se por qualquer motivo não for possível estar conosco, compreenderemos de coração. O carinho que temos por você e a importância que ocupa em nossas vidas vão muito além da sua presença neste dia.
+          </p>
+          <p className="font-montserrat text-muted-foreground leading-relaxed">
+            Preparamos tudo com muito carinho e esperamos viver essa celebração cercados de amor, leveza e pessoas queridas.
+          </p>
+          <p className="font-montserrat text-lg text-muted-foreground leading-relaxed">
+            Será uma alegria compartilhar esse momento com você!
+          </p>
+        </motion.div>
 
         {/* Timeline with Photos */}
-        <div className="max-w-5xl mx-auto space-y-16 md:space-y-24">
+        {/* <div className="max-w-5xl mx-auto space-y-16 md:space-y-24">
           {timelineEvents.map((event, index) => (
             <TimelineItem 
               key={event.year} 
@@ -161,7 +174,7 @@ const OurStory = () => {
               isLast={index === timelineEvents.length - 1}
             />
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

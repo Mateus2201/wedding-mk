@@ -22,18 +22,18 @@ const events: WeddingEvent[] = [
     time: wedding.ceremonyTime,
     location: wedding.venue,
     venue: `${wedding.city}, ${wedding.state}`,
-    address: wedding.address,
+    // address: wedding.address,
     description:
-      "Começamos o dia juntos enquanto trocamos nossos votos, rodeados pelas pessoas que mais importam para nós.",
+      "Um momento para celebrar, diante de Deus e das nossas testemunhas, o início de uma vida a dois.",
     image: theRoseGardenImage,
   },
   {
-    title: "O Almoço",
+    title: "A Recepção",
     time: wedding.lunchTime,
-    location: "Local a confirmar",
-    venue: `${wedding.city}, ${wedding.state}`,
+    location: "Pousada Dunas da Guarda'",
+    venue: `Guarda do Embaú, Palhoça, ${wedding.state}`,
     description:
-      "Depois da cerimônia, seguimos juntos para um almoço de celebração.",
+      "Depois da cerimônia, seguimos juntos para o jantar de celebração.",
     image: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80",
   },
 ];

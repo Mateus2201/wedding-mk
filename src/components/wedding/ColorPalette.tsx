@@ -13,7 +13,7 @@ const ColorPalette = () => {
         <h3 id="palette-title" className="font-serif text-3xl md:text-4xl">Paleta de cores</h3>
         <div className="divider-editorial mt-6" />
       </div>
-      <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 md:gap-5">
+      <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
         {wedding.palette.map((c, i) => (
           <motion.li
             key={c.hex}
