@@ -11,3 +11,4 @@
 - [x] Paginação de 12 presentes, filtros por ambiente e faixa de preço, botão flutuante do carrinho no celular.
 - [x] Painel dos noivos em uma única página com abas; senha pedida uma só vez.
 - [x] Sessão "Lista de presentes" logo abaixo da confirmação, marcada como totalmente opcional.
+- [x] Fundo da contagem regressiva trocado por foto de areia na beira-mar, com filtro claro e texto em tom escuro.
