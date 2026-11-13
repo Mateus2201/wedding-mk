@@ -67,7 +67,7 @@ const Countdown = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-sm tracking-[0.3em] uppercase text-foreground/70 mb-4">
+          <p className="text-sm tracking-[0.3em] uppercase text-foreground mb-4">
             Contagem regressiva para
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
@@ -95,7 +95,7 @@ const Countdown = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="bg-background/60 backdrop-blur-sm border border-foreground/10 px-6 py-6 md:px-10 md:py-8 min-w-[80px] md:min-w-[120px]"
+              className="bg-background/80 backdrop-blur-sm border border-foreground/15 px-6 py-6 md:px-10 md:py-8 min-w-[80px] md:min-w-[120px]"
             >
               <motion.span 
                 className="block font-serif text-4xl md:text-6xl text-foreground mb-2"
@@ -106,7 +106,7 @@ const Countdown = () => {
               >
                 {String(block.value).padStart(2, "0")}
               </motion.span>
-              <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-muted-foreground">
+              <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-foreground/70">
                 {block.label}
               </span>
             </motion.div>
@@ -118,7 +118,7 @@ const Countdown = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-serif text-xl md:text-2xl italic text-foreground/80 mt-12"
+          className="font-serif text-xl md:text-2xl italic text-foreground mt-12"
         >
           {wedding.dateShort} • {wedding.venue}
         </motion.p>
