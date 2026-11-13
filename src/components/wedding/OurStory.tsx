@@ -142,7 +142,7 @@ const OurStory = () => {
           initial={{ opacity: 0 }}
           animate={isHeaderInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.5 }}
-          className="max-w-2xl mx-auto text-center mb-12 md:mb-10 space-y-4"
+          className="max-w-2xl mx-auto text-justify [hyphens:auto] mb-12 md:mb-10 space-y-4"
         >
           <p className="font-serif text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
             Momentos se tornam ainda mais bonitos quando podemos compartilhá-los com quem amamos.
