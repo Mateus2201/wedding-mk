@@ -37,5 +37,5 @@ export async function catalog(includeDisabled = false) {
     if (gift.image_path) { const { data } = await db.storage.from("gift-images").createSignedUrl(gift.image_path, 3600); image_url = data?.signedUrl || ""; }
     return { ...gift, image_url, reserved_quantity: held.reduce((s, i) => s + i.quantity, 0), funded_cents: gift.funded_cents, reserved_cents: held.reduce((s, i) => s + i.amount_cents, 0) };
   }));
-  return { gifts: result, categories: categories || [], payment: { configured: false, provider: "asaas", methods: [] } };
+  return { gifts: result, categories: categories || [], payment: { configured: true, provider: "infinitepay", methods: ["pix", "card"] } };
 }
