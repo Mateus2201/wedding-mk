@@ -12,7 +12,7 @@ Deno.serve(async req => {
       const p = checkout.safeParse(input);
       if (!p.success) return json({ error: "Confira os dados do presente e do convidado." }, 400);
       const origin = new URL(p.data.origin).origin;
-      if (!/^https:\/\/([a-z0-9-]+\.)*lovable\.app$|^http:\/\/localhost(:\d+)?$/.test(origin)) return json({ error: "Origem inválida." }, 400);
+      if (!/^https:\/\/([a-z0-9-]+\.)*(lovable\.app|lovableproject\.com|lovable\.dev)$|^http:\/\/localhost(:\d+)?$/.test(origin)) return json({ error: "Origem inválida." }, 400);
       const db = database();
       const { data: r, error } = await db.rpc("reserve_gifts", { p_guest_name: p.data.name, p_email: p.data.email, p_message: p.data.message, p_anonymous: p.data.anonymous, p_method: p.data.method, p_items: p.data.items });
       if (error || !r) return json({ error: "Alguns presentes não estão mais disponíveis." }, 409);
