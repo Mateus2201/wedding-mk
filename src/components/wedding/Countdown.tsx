@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import { wedding } from "@/lib/wedding";
+import countdownSand from "@/assets/countdown-sand.jpg";
 
 const Countdown = () => {
   const ref = useRef(null);
@@ -49,11 +50,14 @@ const Countdown = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1920&q=80"
-          alt="Romantic scenery"
+          src={countdownSand}
+          alt="Areia na beira do mar"
+          loading="lazy"
+          width={1920}
+          height={1088}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/45 to-background/85" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center">
@@ -63,10 +67,10 @@ const Countdown = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-sm tracking-[0.3em] uppercase text-white/70 mb-4">
+          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
             Contagem regressiva para
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             O Grande Dia
           </h2>
           <motion.div
@@ -74,7 +78,7 @@ const Countdown = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="inline-block"
           >
-            <Heart className="w-6 h-6 text-rose mx-auto mb-8" fill="currentColor" />
+            <Heart className="w-6 h-6 text-foreground/60 mx-auto mb-8" fill="currentColor" />
           </motion.div>
         </motion.div>
 
@@ -91,10 +95,10 @@ const Countdown = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-6 md:px-10 md:py-8 min-w-[80px] md:min-w-[120px]"
+              className="bg-background/60 backdrop-blur-sm border border-foreground/10 px-6 py-6 md:px-10 md:py-8 min-w-[80px] md:min-w-[120px]"
             >
               <motion.span 
-                className="block font-serif text-4xl md:text-6xl text-white mb-2"
+                className="block font-serif text-4xl md:text-6xl text-foreground mb-2"
                 key={block.value}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -102,7 +106,7 @@ const Countdown = () => {
               >
                 {String(block.value).padStart(2, "0")}
               </motion.span>
-              <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-white/60">
+              <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-muted-foreground">
                 {block.label}
               </span>
             </motion.div>
@@ -114,7 +118,7 @@ const Countdown = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-serif text-xl md:text-2xl italic text-white/80 mt-12"
+          className="font-serif text-xl md:text-2xl italic text-foreground/80 mt-12"
         >
           {wedding.dateShort} • {wedding.venue}
         </motion.p>
