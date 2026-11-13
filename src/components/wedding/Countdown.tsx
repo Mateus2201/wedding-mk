@@ -67,7 +67,7 @@ const Countdown = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+          <p className="text-sm tracking-[0.3em] uppercase text-foreground/70 mb-4">
             Contagem regressiva para
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
