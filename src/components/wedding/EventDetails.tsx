@@ -89,7 +89,7 @@ const EventCard = ({
             className="group/link inline-flex items-center gap-3 text-muted-foreground transition-colors duration-300 hover:text-rose/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose/40"
           >
             <MapPin className="w-4 h-4 transition-transform duration-300 group-hover/link:scale-110" />
-            <span className="text-sm tracking-wide underline decoration-border/60 underline-offset-4 transition-colors duration-300 group-hover/link:decoration-rose/50">
+            <span className="text-sm tracking-wide underline decoration-foreground/25 underline-offset-4 transition-colors duration-300 group-hover/link:decoration-rose/50">
               {event.location}
             </span>
             <ExternalLink className="w-3.5 h-3.5 opacity-60 transition-opacity duration-300 group-hover/link:opacity-100" />
