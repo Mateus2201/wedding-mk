@@ -117,7 +117,7 @@ const RSVPForm = () => {
   }
 
   return (
-    <section className="py-24 md:py-32 bg-card">
+    <section className="py-24 md:py-32 bg-card overflow-x-hidden">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
