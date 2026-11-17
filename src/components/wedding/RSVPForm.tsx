@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import rsvpPhoto from "@/assets/rsvp-photo.jpg";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,11 +18,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Heart } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 import { wedding } from "@/lib/wedding";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
@@ -38,8 +38,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const RSVPForm = () => {
-  const navigate = useNavigate();
   const headerRef = useRef(null);
+  const thanksRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [came, setCame] = useState<boolean | null>(null);
@@ -75,8 +75,16 @@ const RSVPForm = () => {
     sessionStorage.setItem("wedding-guest-name", data.name.trim());
     sessionStorage.setItem("wedding-guest-email", data.email.trim());
     toast.success("Sua resposta foi recebida. Obrigado pelo carinho!");
-    navigate("/presentes");
   };
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+    const t = setTimeout(
+      () => thanksRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
+      80
+    );
+    return () => clearTimeout(t);
+  }, [isSubmitted]);
 
   const attendance = form.watch("attendance");
 
