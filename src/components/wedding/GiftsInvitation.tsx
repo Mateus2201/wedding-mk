@@ -20,7 +20,7 @@ const GiftsInvitation = () => {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground">
             <Sparkles className="w-3 h-3" strokeWidth={1.5} />
-            Totalmente opcional
+            Um carinho especial
           </span>
 
           <div className="flex items-center justify-center gap-3 mt-8 mb-5">
@@ -30,21 +30,26 @@ const GiftsInvitation = () => {
           </div>
 
           <h2 className="heading-elegant font-serif text-3xl md:text-4xl">
-            Lista de presentes
+            Nosso cantinho de presentes
           </h2>
 
           <p className="text-muted-foreground mt-5 leading-relaxed">
-            Sua presença já é o nosso maior presente. Se ainda assim quiserem
-            nos ajudar a montar a nossa casinha, preparamos uma listinha com
-            carinho — sem nenhuma obrigação, e sem qualquer relação com a
-            confirmação de presença.
+            Ter vocês ao nosso lado nesse dia tão especial já é um presente
+            enorme!
+          </p>
+
+          <p className="text-muted-foreground mt-4 leading-relaxed">
+            Para quem deseja nos presentear e fazer parte da construção do
+            nosso novo lar, preparamos um espaço especial onde é possível
+            contribuir com qualquer valor, de forma simples e segura, via Pix
+            ou cartão.
           </p>
 
           <Link
             to="/presentes"
-            className="group inline-flex items-center gap-3 mt-9 border-b border-foreground/25 pb-1 text-sm tracking-[0.2em] uppercase hover:border-foreground/70"
+            className="group inline-flex items-center justify-center gap-3 mt-9 border-b border-foreground/25 pb-1 text-xs md:text-sm tracking-[0.12em] md:tracking-[0.2em] uppercase hover:border-foreground/70"
           >
-            Ver a lista, se quiser
+            Conhecer nosso espaço de presentes
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
