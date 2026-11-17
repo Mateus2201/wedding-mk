@@ -38,10 +38,8 @@ type FormData = z.infer<typeof formSchema>;
 
 const RSVPForm = () => {
   const headerRef = useRef(null);
-  const thanksRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [came, setCame] = useState<boolean | null>(null);
+  const navigate = useNavigate();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -69,86 +67,12 @@ const RSVPForm = () => {
       toast.error("Não conseguimos enviar sua resposta. Tente novamente.");
       return;
     }
-    setCame(attending);
-    setIsSubmitted(true);
     sessionStorage.setItem("wedding-guest-name", data.name.trim());
     sessionStorage.setItem("wedding-guest-email", data.email.trim());
-    toast.success("Sua resposta foi recebida. Obrigado pelo carinho!");
+    navigate(`/obrigado-presenca?vai=${attending ? "sim" : "nao"}`);
   };
 
-  useEffect(() => {
-    if (!isSubmitted) return;
-    const t = setTimeout(
-      () => thanksRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
-      80
-    );
-    return () => clearTimeout(t);
-  }, [isSubmitted]);
-
   const attendance = form.watch("attendance");
-
-  if (isSubmitted) {
-    return (
-      <section className="py-24 md:py-32">
-        <div className="container mx-auto px-6">
-          <motion.div
-            ref={thanksRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-xl mx-auto text-center"
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut"
-              }}
-            >
-              <Heart className="w-12 h-12 mx-auto mb-6 text-rose" />
-            </motion.div>
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              {came ? "Presença confirmada!" : "Obrigado por avisar!"}
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              {came
-                ? "Que alegria saber que teremos você conosco nesse dia tão especial!"
-                : "Sentiremos sua falta, mas obrigado pelo carinho e por avisar."}
-            </p>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              {came
-                ? "Sua presença torna esse momento ainda mais inesquecível. Agradecemos de coração por fazer parte da nossa história! ♡"
-                : "Agradecemos de coração por fazer parte da nossa história! ♡"}
-            </p>
-
-            <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground mt-12">
-              <Sparkles className="w-3 h-3" strokeWidth={1.5} />
-              Um carinho especial
-            </span>
-
-            <p className="text-muted-foreground mt-5 leading-relaxed">
-              Preparamos também uma lista de presentes para quem deseja
-              contribuir com o início dessa nova etapa das nossas vidas. Cada
-              gesto de carinho será recebido com muito amor e gratidão!
-            </p>
-
-            <Link
-              to="/presentes"
-              className="group inline-flex items-center justify-center gap-3 mt-9 border-b border-foreground/25 pb-1 text-xs md:text-sm tracking-[0.12em] md:tracking-[0.2em] uppercase hover:border-foreground/70"
-            >
-              Conhecer nossa lista de presentes
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="py-24 md:py-32 bg-card overflow-x-hidden">
