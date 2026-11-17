@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Sparkles } from "lucide-react";
-import theRoseGardenImage from "@/assets/therosegarden.jpg";
+import { MapPin, Sparkles, ExternalLink } from "lucide-react";
+import beachHouseImage from "@/assets/beach-house-beira-mar.jpg.asset.json";
+import pousadaImage from "@/assets/pousada-dunas-da-guarda.jpg.asset.json";
 import { wedding } from "@/lib/wedding";
 import ColorPalette from "./ColorPalette";
 
@@ -14,6 +15,7 @@ type WeddingEvent = {
   address?: string;
   description: string;
   image: string;
+  link: string;
 };
 
 const events: WeddingEvent[] = [
@@ -25,16 +27,18 @@ const events: WeddingEvent[] = [
     // address: wedding.address,
     description:
       "Um momento para celebrar, diante de Deus e das nossas testemunhas, o início de uma vida a dois.",
-    image: theRoseGardenImage,
+    image: beachHouseImage.url,
+    link: "https://share.google/S3FGbP0ZLEsfhdoB9",
   },
   {
     title: "A Recepção",
     time: wedding.lunchTime,
-    location: "Pousada Dunas da Guarda'",
+    location: "Pousada Dunas da Guarda",
     venue: `Guarda do Embaú, Palhoça, ${wedding.state}`,
     description:
       "Depois da cerimônia, seguimos juntos para o jantar de celebração.",
-    image: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80",
+    image: pousadaImage.url,
+    link: "https://share.google/tlGD5yLgRIfUFKQSM",
   },
 ];
 
@@ -78,10 +82,18 @@ const EventCard = ({
 
         {/* Location */}
         <div className="space-y-3 mb-6">
-          <div className="flex items-center gap-3 text-muted-foreground transition-colors duration-300 group-hover:text-foreground/70">
-            <MapPin className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-sm tracking-wide">{event.location}</span>
-          </div>
+          <a
+            href={event.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/link inline-flex items-center gap-3 text-muted-foreground transition-colors duration-300 hover:text-rose/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose/40"
+          >
+            <MapPin className="w-4 h-4 transition-transform duration-300 group-hover/link:scale-110" />
+            <span className="text-sm tracking-wide underline decoration-border/60 underline-offset-4 transition-colors duration-300 group-hover/link:decoration-rose/50">
+              {event.location}
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-60 transition-opacity duration-300 group-hover/link:opacity-100" />
+          </a>
         </div>
 
         {/* Venue */}
