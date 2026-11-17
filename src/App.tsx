@@ -8,6 +8,7 @@ import Painel from "./pages/Painel";
 import NotFound from "./pages/NotFound";
 import Wishlist from "./pages/Wishlist";
 import GiftThankYou from "./pages/GiftThankYou";
+import RsvpThankYou from "./pages/RsvpThankYou";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/painel" element={<Painel />} />
           <Route path="/presentes" element={<Wishlist />} />
           <Route path="/presentes/obrigado" element={<GiftThankYou />} />
+          <Route path="/obrigado-presenca" element={<RsvpThankYou />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

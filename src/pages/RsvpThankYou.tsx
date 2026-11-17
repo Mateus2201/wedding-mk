@@ -65,7 +65,7 @@ const RsvpThankYou = () => {
         </Link>
 
         <p className="mt-14 text-xs tracking-[0.2em] uppercase text-muted-foreground">
-          {wedding.coupleNames} • {wedding.dateShort}
+          {wedding.partnerOne} & {wedding.partnerTwo} • {wedding.dateShort}
         </p>
         <Link
           to="/"
