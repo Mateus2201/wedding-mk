@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import rsvpPhoto from "@/assets/rsvp-photo.jpg";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -18,11 +19,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Heart, Sparkles } from "lucide-react";
 import { wedding } from "@/lib/wedding";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
