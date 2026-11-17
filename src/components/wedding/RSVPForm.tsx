@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import rsvpPhoto from "@/assets/rsvp-photo.jpg";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,11 +18,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Heart } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 import { wedding } from "@/lib/wedding";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
@@ -38,8 +38,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const RSVPForm = () => {
-  const navigate = useNavigate();
   const headerRef = useRef(null);
+  const thanksRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [came, setCame] = useState<boolean | null>(null);
@@ -75,8 +75,16 @@ const RSVPForm = () => {
     sessionStorage.setItem("wedding-guest-name", data.name.trim());
     sessionStorage.setItem("wedding-guest-email", data.email.trim());
     toast.success("Sua resposta foi recebida. Obrigado pelo carinho!");
-    navigate("/presentes");
   };
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+    const t = setTimeout(
+      () => thanksRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
+      80
+    );
+    return () => clearTimeout(t);
+  }, [isSubmitted]);
 
   const attendance = form.watch("attendance");
 
@@ -85,6 +93,7 @@ const RSVPForm = () => {
       <section className="py-24 md:py-32">
         <div className="container mx-auto px-6">
           <motion.div
+            ref={thanksRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl mx-auto text-center"
@@ -103,13 +112,39 @@ const RSVPForm = () => {
               <Heart className="w-12 h-12 mx-auto mb-6 text-rose" />
             </motion.div>
             <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Obrigado!
+              {came ? "Presença confirmada!" : "Obrigado por avisar!"}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               {came
-                ? "Sua resposta foi recebida. Ficamos muito felizes que você faça parte do nosso dia. Mal podemos esperar para celebrar com você."
-                : "Sua resposta foi recebida. Sentiremos sua falta, mas obrigado pelo carinho e por avisar."}
+                ? "Que alegria saber que teremos você conosco nesse dia tão especial!"
+                : "Sentiremos sua falta, mas obrigado pelo carinho e por avisar."}
             </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              {came
+                ? "Sua presença torna esse momento ainda mais inesquecível. Agradecemos de coração por fazer parte da nossa história! ♡"
+                : "Agradecemos de coração por fazer parte da nossa história! ♡"}
+            </p>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground mt-12">
+              <Sparkles className="w-3 h-3" strokeWidth={1.5} />
+              Um carinho especial
+            </span>
+
+            <p className="text-muted-foreground mt-5 leading-relaxed">
+              Preparamos também uma lista de presentes para quem deseja
+              contribuir com o início dessa nova etapa das nossas vidas. Cada
+              gesto de carinho será recebido com muito amor e gratidão!
+            </p>
+
+            <Link
+              to="/presentes"
+              className="group inline-flex items-center justify-center gap-3 mt-9 border-b border-foreground/25 pb-1 text-xs md:text-sm tracking-[0.12em] md:tracking-[0.2em] uppercase hover:border-foreground/70"
+            >
+              Conhecer nossa lista de presentes
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
           </motion.div>
         </div>
       </section>
