@@ -80,11 +80,11 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="heading-display text-5xl min-[380px]:text-6xl sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-[10rem] font-serif text-white"
           >
-            <span className="block italic">{wedding.partnerOne}</span>
-            <span className="block text-3xl sm:text-4xl md:text-5xl font-normal italic text-white/70 my-2 sm:my-4">
+            <span className="block great-vibes-regular">{wedding.partnerOne}</span>
+            <span className="block great-vibes-regular text-3xl sm:text-4xl md:text-5xl text-white/70 my-2 sm:my-4">
               &
             </span>
-            <span className="block italic">{wedding.partnerTwo}</span>
+            <span className="block great-vibes-regular">{wedding.partnerTwo}</span>
           </motion.h1>
 
           {/* Divider with subtle shimmer */}
