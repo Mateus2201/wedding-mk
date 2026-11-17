@@ -12,3 +12,4 @@
 - [x] Painel dos noivos em uma única página com abas; senha pedida uma só vez.
 - [x] Sessão "Lista de presentes" logo abaixo da confirmação, marcada como totalmente opcional.
 - [x] Fundo da contagem regressiva trocado por foto de areia na beira-mar, com filtro claro e texto em tom escuro.
+- [x] Fotos dos dois locais nos cartões de evento (Beach House Beira Mar e Pousada Dunas da Guarda), cada nome com link para o Google em nova aba.
