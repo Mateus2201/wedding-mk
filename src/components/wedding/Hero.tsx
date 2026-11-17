@@ -1,9 +1,46 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { wedding } from "@/lib/wedding";
 import heroVideo from "@/assets/hero-sea.mp4.asset.json";
 import heroPoster from "@/assets/hero-sea-poster.jpg.asset.json";
 
 const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // iOS/Android só permitem autoplay se o vídeo estiver mudo e inline.
+    // O React não renderiza o atributo `muted`, então garantimos aqui.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Bloqueado (ex.: modo economia de energia) — tenta no primeiro toque.
+        const onInteract = () => {
+          video.play().catch(() => {});
+          window.removeEventListener("touchstart", onInteract);
+          window.removeEventListener("click", onInteract);
+        };
+        window.addEventListener("touchstart", onInteract, { once: true, passive: true });
+        window.addEventListener("click", onInteract, { once: true });
+      });
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+    }
+
+    return () => video.removeEventListener("loadeddata", tryPlay);
+  }, []);
+
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden py-24 sm:py-28">
       {/* Background Image with Parallax Effect */}
@@ -14,7 +51,9 @@ const Hero = () => {
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <video
+          ref={videoRef}
           src={heroVideo.url}
+          preload="auto"
           poster={heroPoster.url}
           autoPlay
           muted

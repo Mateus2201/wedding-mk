@@ -15,6 +15,13 @@
   font-style: normal;
 }
 
+/* font-style não é fixado aqui para manter o `italic` do Tailwind funcionando */
+.playfair-display-regular {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
 @layer base {
   :root {
     /* Off-white / Light Sand Background */

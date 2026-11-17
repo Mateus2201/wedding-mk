@@ -144,22 +144,22 @@ const OurStory = () => {
           transition={{ duration: 0.9, delay: 0.5 }}
           className="max-w-2xl mx-auto text-justify [hyphens:auto] mb-12 md:mb-10 space-y-4"
         >
-          <p className="font-serif text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
             Momentos se tornam ainda mais bonitos quando podemos compartilhá-los com quem amamos.
           </p>
-          <p className="font-montserrat text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-muted-foreground leading-relaxed">
             Estamos preparando um dia muito especial, e será uma alegria imensa ter você conosco para celebrar o início deste novo capítulo das nossas vidas.
           </p>
-          <p className="font-montserrat text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-muted-foreground leading-relaxed">
             Nosso casamento acontecerá em Santa Catarina, e sabemos que, para muitos, isso envolverá deslocamento, organização e uma viagem. Por isso, queremos que saiba que ter você presente será motivo de grande alegria para nós.
           </p>
-          <p className="font-montserrat text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-muted-foreground leading-relaxed">
             Mas, se por qualquer motivo não for possível estar conosco, compreenderemos de coração. O carinho que temos por você e a importância que ocupa em nossas vidas vão muito além da sua presença neste dia.
           </p>
-          <p className="font-montserrat text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-muted-foreground leading-relaxed">
             Preparamos tudo com muito carinho e esperamos viver essa celebração cercados de amor, leveza e pessoas queridas.
           </p>
-          <p className="font-montserrat text-lg text-muted-foreground leading-relaxed">
+          <p className="playfair-display-regular text-lg text-center text-muted-foreground leading-relaxed">
             Será uma alegria compartilhar esse momento com você!
           </p>
         </motion.div>
