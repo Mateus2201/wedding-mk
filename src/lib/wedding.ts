@@ -2,11 +2,11 @@
 // Every section of the site reads from here so a detail change happens once.
 
 export const wedding = {
-  partnerOne: "Mateus",
-  partnerTwo: "Katyelly",
-  monogram: "M & K",
-  initialOne: "M",
-  initialTwo: "K",
+  partnerOne: "Katyelly",
+  partnerTwo: "Mateus",
+  monogram: "K & M",
+  initialOne: "K",
+  initialTwo: "M",
 
   // Ceremony start — also drives the countdown timer.
   dateISO: "2026-12-21T10:00:00",
