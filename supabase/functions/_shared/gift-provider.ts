@@ -1,7 +1,7 @@
 // InfinitePay Checkout Integrado. Webhook bodies are never trusted: each event is re-checked via payment_check.
 export const PROVIDER = "infinitepay";
 const HANDLE = "mateus-viana-m22";
-const API = "https://api.infinitepay.io/invoices/public/checkout";
+const API = "https://api.checkout.infinitepay.io";
 export type LinkItem = { description: string; quantity: number; price: number };
 export async function createCheckoutLink(input: { orderNsu: string; items: LinkItem[]; redirectUrl: string; webhookUrl: string; name: string; email: string }) {
   const res = await fetch(`${API}/links`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ handle: HANDLE, items: input.items, order_nsu: input.orderNsu, redirect_url: input.redirectUrl, webhook_url: input.webhookUrl, customer: { name: input.name, email: input.email } }) });

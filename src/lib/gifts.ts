@@ -28,3 +28,12 @@ export function financials(orders: Transaction[]) {
   return { received: total, confirmed: paid.length, pending: orders.filter(o => o.status === "pending").reduce((n, o) => n + o.amount_cents, 0), failed: orders.filter(o => o.status === "failed").length, refunded: orders.filter(o => o.status === "refunded").reduce((n, o) => n + o.amount_cents, 0), average: units ? Math.round(total / units) : 0 };
 }
 export const checkoutSchema = z.object({ name: z.string().trim().min(2).max(120), email: z.string().trim().email().max(255), message: z.string().trim().max(2000), anonymous: z.boolean(), method: z.enum(["pix", "card"]), items: z.array(z.object({ gift_id: z.string().uuid(), quantity: z.number().int().min(1).max(10000) })).min(1).max(30) });
+export const priceRanges = [{ id: "", label: "Todos os preços", min: 0, max: Infinity }, { id: "a", label: "Até R$ 100", min: 0, max: 10000 }, { id: "b", label: "R$ 100 a R$ 300", min: 10000, max: 30000 }, { id: "c", label: "R$ 300 a R$ 1.000", min: 30000, max: 100000 }, { id: "d", label: "Acima de R$ 1.000", min: 100000, max: Infinity }];
+export type GiftFilter = { query: string; category: string; price: string };
+export const emptyFilter: GiftFilter = { query: "", category: "", price: "" };
+export const isFiltering = (f: GiftFilter) => Boolean(f.query.trim() || f.category || f.price);
+export function filterGifts(gifts: Gift[], f: GiftFilter) {
+  const range = priceRanges.find(r => r.id === f.price) || priceRanges[0], q = f.query.trim().toLocaleLowerCase("pt-BR");
+  return gifts.filter(g => (!f.category || g.category_id === f.category) && g.price_cents >= range.min && g.price_cents < range.max && g.name.toLocaleLowerCase("pt-BR").includes(q));
+}
+export const GIFTS_PAGE_SIZE = 12;
