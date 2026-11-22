@@ -38,7 +38,7 @@ const events: WeddingEvent[] = [
     title: "A Recepção",
     time: wedding.lunchTime,
     location: "Pousada Dunas da Guarda",
-    venue: `Guarda do Embaú, Palhoça, ${wedding.state}`,
+    venue: `${wedding.city}, ${wedding.state}`,
     description:
       "Depois da cerimônia, seguimos juntos para o jantar de celebração.",
     image: pousadaImage.url,

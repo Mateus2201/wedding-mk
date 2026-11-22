@@ -17,3 +17,4 @@
 - [x] Fundo da contagem regressiva trocado por foto de areia na beira-mar, com filtro claro e texto em tom escuro.
 - [x] Fotos dos dois locais nos cartões de evento (Beach House Beira Mar e Pousada Dunas da Guarda), cada nome com link para o Google em nova aba.- [x] RSVP: redirecionar para página própria de agradecimento (/obrigado-presenca?vai=sim|nao) em vez de mensagem embutida
 - [x] Local único no site: todas as referências a "Beach House Beira Mar" viraram "Pousada Dunas da Guarda"; o cartão da cerimônia na Beach ficou comentado em EventDetails.tsx, pronto para voltar se mudarem de ideia.
+- [x] Localidade corrigida para Guarda do Embaú, Palhoça (abertura, rodapé e cartão do evento leem de src/lib/wedding.ts).

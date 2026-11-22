@@ -22,11 +22,11 @@ export const wedding = {
   rsvpDeadline: "6 de dezembro de 2026" as string | null,
 
   venue: "Pousada Dunas da Guarda",
-  city: "Praia da Pinheira, Palhoça",
+  city: "Guarda do Embaú, Palhoça",
   state: "Santa Catarina",
   country: "Brasil",
-  address: "Praia da Pinheira, Palhoça — Santa Catarina, Brasil",
-  locationLine: "Praia da Pinheira • Palhoça, Santa Catarina",
+  address: "Guarda do Embaú, Palhoça — Santa Catarina, Brasil",
+  locationLine: "Guarda do Embaú • Palhoça, Santa Catarina",
 
   // Official wedding palette, shown in this exact order.
   palette: [
