@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, Sparkles, ExternalLink } from "lucide-react";
-import beachHouseImage from "@/assets/beach-house-beira-mar.jpg.asset.json";
+// Foto da cerimônia na Beach House Beira Mar — guardada caso a gente volte atrás.
+// import beachHouseImage from "@/assets/beach-house-beira-mar.jpg.asset.json";
 import pousadaImage from "@/assets/pousada-dunas-da-guarda.jpg.asset.json";
 import { wedding } from "@/lib/wedding";
 import ColorPalette from "./ColorPalette";
@@ -19,6 +20,8 @@ type WeddingEvent = {
 };
 
 const events: WeddingEvent[] = [
+  /* --- Cerimônia na Beach House Beira Mar: fora do ar, mas guardada caso a gente volte atrás.
+     Para reativar, descomente este bloco e a linha de import da foto lá em cima. ---
   {
     title: "A Cerimônia",
     time: wedding.ceremonyTime,
@@ -30,6 +33,7 @@ const events: WeddingEvent[] = [
     image: beachHouseImage.url,
     link: "https://share.google/S3FGbP0ZLEsfhdoB9",
   },
+  --- fim do bloco guardado --- */
   {
     title: "A Recepção",
     time: wedding.lunchTime,
@@ -149,8 +153,12 @@ const EventDetails = () => {
           </p>
         </motion.div>
 
-        {/* Events Grid */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+        {/* Events Grid — uma coluna centralizada quando sobra só um cartão */}
+        <div
+          className={`grid gap-6 md:gap-8 mx-auto ${
+            events.length > 1 ? "md:grid-cols-2 max-w-4xl" : "max-w-2xl"
+          }`}
+        >
           {events.map((event, index) => (
             <EventCard key={event.title} event={event} index={index} />
           ))}

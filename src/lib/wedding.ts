@@ -21,7 +21,7 @@ export const wedding = {
   // Guests' response deadline — set to null to hide the date from the page.
   rsvpDeadline: "6 de dezembro de 2026" as string | null,
 
-  venue: "Beach House Beira Mar",
+  venue: "Pousada Dunas da Guarda",
   city: "Praia da Pinheira, Palhoça",
   state: "Santa Catarina",
   country: "Brasil",
